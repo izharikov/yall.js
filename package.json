@@ -7,8 +7,11 @@
   "jsnext:main": "./src/yall.mjs",
   "scripts": {
     "clean": "npx rimraf ./dist",
-    "lint": "npx eslint ./src/yall.mjs",
-    "test": "npm run lint && npm run build && cp -fv ./dist/yall.min.js ./test/js && npm run server",
+    "lint": "npx eslint --fix ./src/yall.mjs",
+    "test": "npm run lint && npm run build && npm run copy && npm run server",
+    "copy": "run-script-os",
+    "copy:default": "cp -fv ./dist/yall.min.js ./test/js",
+    "copy:windows": "copy .\\dist\\yall.min.js .\\test\\js\\yall.min.js",
     "server": "node http.js",
     "build": "npm run clean && npx rollup -c"
   },
@@ -46,7 +49,8 @@
     "rimraf": "^2.6.3",
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-terser": "^5.1.1"
+    "rollup-plugin-terser": "^5.1.1",
+    "run-script-os": "^1.0.7"
   },
   "dependencies": {}
 }
