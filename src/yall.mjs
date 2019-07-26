@@ -33,7 +33,7 @@ export default function (options) {
     }
 
     elements = queryDOM("source", sourceNode);
-
+    const a = () => {return 1;}
     for (let elementIndex in elements) {
       yallFlipDataAttrs(elements[elementIndex]);
     }
@@ -41,6 +41,7 @@ export default function (options) {
     yallFlipDataAttrs(element);
 
     if (element.autoplay) {
+      a();
       element.load();
     }
 
